@@ -1,3 +1,4 @@
+import { IProducts } from './../shared/Models/Pagination';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IPagination } from '../shared/Models/Pagination';
@@ -41,5 +42,9 @@ export class ShopService {
 
   getCategory() {
     return this._HttpClient.get<ICategory[]>(this.baseUrl + 'Categories');
+  }
+
+  getProductById(id: number) {
+    return this._HttpClient.get<IProducts>(this.baseUrl + 'Products/productById' + id);
   }
 }
