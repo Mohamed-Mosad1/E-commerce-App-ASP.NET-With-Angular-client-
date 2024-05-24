@@ -1,0 +1,39 @@
+<div class="text-center">
+  <main class="form-signin w-100 m-auto">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-floating">
+        <input type="email" formControlName="email" class="form-control" placeholder="name@example.com"
+          [class.is-invalid]="_email.invalid && _email.touched" [class.is-valid]="_email.valid">
+        <label for="floatingInput">Email address</label>
+        <div class="fw-bold" *ngIf="_email.invalid && _email.touched">
+          <small class="text-danger" *ngIf="_email.errors?.['required']">*Email is required</small>
+          <small class="text-danger" *ngIf="_email.errors?.['email']">*Invalid email format</small>
+        </div>
+      </div>
+
+      <div class="form-floating">
+        <input type="password" formControlName="password" class="form-control" placeholder="Password"
+          [class.is-invalid]="_password.invalid && _password.touched" [class.is-valid]="_password.valid">
+        <label for="floatingPassword">Password</label>
+
+        <div class="fw-bold">
+          <small class="text-danger" [class.d-none]="_password.valid || _password.untouched">*Password is
+            required</small>
+          <small class="text-danger" *ngIf="_password.errors?.['pattern']">*Password It expects atleast 1 small-case
+            letter, 1 Capital letter, 1 digit, 1 special character and the length should be between 6-10 characters. The
+            sequence of the characters is not important. This expression follows the above 4 norms specified by
+            microsoft for a strong password!</small>
+        </div>
+      </div>
+
+      <button class="btn btn-danger w-100 py-2" type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- <div class="form-check text-start my-3">
+      <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Remember me
+      </label>
+    </div> -->
+  </main>
+</div>
