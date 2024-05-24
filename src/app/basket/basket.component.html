@@ -1,0 +1,64 @@
+<div *ngIf="(basket$ | async) === null">
+  <h3 class="text-center text-danger">There is no items in your Cart</h3>
+
+</div>
+
+<div class="mt-5" *ngIf="(basket$ | async) as basket">
+  <div class="container">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="bg-light m-2">
+            <tr class="text-uppercase py-4">
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+              <th scope="col">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of (basket$ | async).basketItems">
+              <th scope="row">
+                <div class="p-2">
+                  <img src="{{item.productPicture}}" alt="{{item.productName}}" class="img-fluid"
+                    style="max-height: 70px;" />
+                  <div class="me-3 d-inline-block align-middle">
+                    <h6 class="mb-0">
+                      <a routerLink="/shop/{{item.id}}"
+                        class="text-decoration-none text-danger">{{item.productName}}</a>
+                    </h6>
+                    <span class="text-muted fst-italic">Category: {{item.category}}</span>
+                  </div>
+                </div>
+              </th>
+              <td class="align-middle"><strong>{{item.price | currency}}</strong></td>
+              <td class="align-middle">
+                <div class="d-flex align-items-center">
+                  <i (click)="decrementBasketItemQuantity(item)" class="fa fa-minus-square text-danger mx-2" style="cursor: pointer;"></i>
+                  <span class="fw-bold" style="font-size: 1em;">{{item.quantity}}</span>
+                  <i (click)="incrementBasketItemQuantity(item)" class="fa fa-plus-square text-danger mx-2" style="cursor: pointer;"></i>
+                </div>
+              </td>
+              <td class="align-middle">
+                <strong>{{item.price * item.quantity | currency}}</strong>
+              </td>
+              <td class="align-middle text-center">
+                <a class="text-danger">
+                  <i (click)="removeItemFromBasket(item)" class="fa fa-trash-o" style="cursor: pointer; font-size: 1.5em;"
+                  ></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-6">
+        <app-order-total></app-order-total>
+        <a routerLink="/checkout" class="btn btn-outline-success d-md-block mb-5">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>

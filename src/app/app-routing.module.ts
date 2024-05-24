@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { TestErrorComponent } from './core/test-error/test-error.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { ServerErrorComponent } from './core/server-error/server-error.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {breadcrumb: 'Home'}, title: 'Home'},
@@ -11,6 +12,9 @@ const routes: Routes = [
   {path: 'server-error', component: ServerErrorComponent, data: {breadcrumb: 'Server Error'}, title: 'Server Error'},
   {path: 'test-error', component: TestErrorComponent, data: {breadcrumb: 'Test Error'}, title: 'Test Error'},
   {path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule), data: {breadcrumb: 'Shop'}, title: 'Shop'},
+  {path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule), data: {breadcrumb: 'Basket'}, title: 'Cart'},
+  {path: 'checkout', canActivate: [authGuard], loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule), data: {breadcrumb: 'Checkout'}, title: 'Checkout'},
+  {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule), data: {breadcrumb: 'Account'}, title: 'Account'},
   {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
 ];
 
