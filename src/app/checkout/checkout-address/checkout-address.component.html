@@ -1,0 +1,73 @@
+<div class="mt-4" [formGroup]="checkoutForm">
+  <div class="d-flex justify-content-between align-content-center">
+    <h4>Shipping Address</h4>
+    <button (click)="saveUserAddress()" [disabled]="checkoutForm.get('shippingAddressForm').invalid || checkoutForm.get('shippingAddressForm').pristine"
+      class="btn btn-outline-success">Save as default address</button>
+  </div>
+
+  <div class="row my-4" formGroupName="shippingAddressForm">
+    <div class="form-group col-6 mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="firstName" id="firstName" placeholder="First Name"
+          [class.is-invalid]="_firstName.invalid && _firstName.touched" [class.is-valid]="_firstName.valid">
+        <label for="firstName">First Name</label>
+        <small class="text-danger fw-bold" [class.d-none]="_firstName.valid || _firstName.untouched">*First name is required!</small>
+      </div>
+    </div>
+
+    <div class="form-group col-6 mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="lastName" id="lastName" placeholder="Last Name"
+          [class.is-invalid]="_lastName.invalid && _lastName.touched" [class.is-valid]="_lastName.valid">
+        <label for="lastName">Last Name</label>
+        <small class="text-danger fw-bold" [class.d-none]="_lastName.valid || _lastName.untouched">*Last Name is required!</small>
+      </div>
+    </div>
+
+    <div class="form-group col-6 mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="street" id="street" placeholder="Street"
+          [class.is-invalid]="_street.invalid && _street.touched" [class.is-valid]="_street.valid">
+        <label for="street">Street</label>
+        <small class="text-danger fw-bold" [class.d-none]="_street.valid || _street.untouched">*Street is required!</small>
+      </div>
+    </div>
+
+    <div class="form-group col-6 mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="city" id="city" placeholder="City"
+          [class.is-invalid]="_city.invalid && _city.touched" [class.is-valid]="_city.valid">
+        <label for="city">City</label>
+        <small class="text-danger fw-bold" [class.d-none]="_city.valid || _city.untouched">*City is required!</small>
+      </div>
+    </div>
+
+    <div class="form-group col-6 mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="state" id="state" placeholder="State"
+          [class.is-invalid]="_state.invalid && _state.touched" [class.is-valid]="_state.valid">
+        <label for="state">State</label>
+        <small class="text-danger fw-bold" [class.d-none]="_state.valid || _state.untouched">*State is required!</small>
+      </div>
+    </div>
+
+    <div class="form-group col-6 mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="zipCode" id="zipCode" placeholder="Zip Code"
+          [class.is-invalid]="_zipCode.invalid && _zipCode.touched" [class.is-valid]="_zipCode.valid">
+        <label for="zipCode">Zip Code</label>
+        <small class="text-danger fw-bold" [class.d-none]="_zipCode.valid || _zipCode.untouched">*Zip Code is required!</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between flex-column flex-lg-row my-3">
+  <button class="btn btn-outline-danger" routerLink="/basket">
+    <i class="fa fa-angle-left me-2"></i>Back To Basket
+  </button>
+  <br>
+  <button class="btn btn-danger" cdkStepperNext>
+    Go To Delivery<i class="fa fa-angle-right ms-2"></i>
+  </button>
+</div>

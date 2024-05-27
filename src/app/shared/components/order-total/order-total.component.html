@@ -6,16 +6,28 @@
   <p class="fst-italic">Shipping value will be added on total price</p>
   <ul>
     <li class="d-flex justify-content-between py-3 border-bottom">
-      <strong class="text-muted">Order Subtotal</strong>
-      <strong>{{(basketTotals$ | async).subtotal | currency}}</strong>
+      <strong class="text-muted">Order Subtotal:</strong>
+      <strong>{{subTotal | currency}}</strong>
     </li>
     <li class="d-flex justify-content-between py-3 border-bottom">
-      <strong class="text-muted">Shipping</strong>
-      <strong>{{(basketTotals$ | async).shipping | currency}}</strong>
+      <strong class="text-muted">Shipping:</strong>
+      <strong>{{shippingCost | currency}}</strong>
     </li>
     <li class="d-flex justify-content-between py-3 border-bottom">
       <strong class="text-muted">Total:</strong>
-      <strong>{{(basketTotals$ | async).total | currency}}</strong>
+      <strong>{{total | currency}}</strong>
     </li>
+    <!-- <li class="d-flex justify-content-between py-3 border-bottom">
+      <strong class="text-muted">Order Subtotal:</strong>
+      <strong>{{(basketTotals$ | async)?.subTotal | currency}}</strong>
+    </li>
+    <li class="d-flex justify-content-between py-3 border-bottom">
+      <strong class="text-muted">Shipping:</strong>
+      <strong>{{(basketTotals$ | async)?.shipping | currency}}</strong>
+    </li>
+    <li class="d-flex justify-content-between py-3 border-bottom">
+      <strong class="text-muted">Total:</strong>
+      <strong>{{(basketTotals$ | async)?.total | currency}}</strong>
+    </li> -->
   </ul>
 </div>

@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'test-error', component: TestErrorComponent, data: {breadcrumb: 'Test Error'}, title: 'Test Error'},
   {path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule), data: {breadcrumb: 'Shop'}, title: 'Shop'},
   {path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule), data: {breadcrumb: 'Basket'}, title: 'Cart'},
+  {path: 'orders', canActivate: [authGuard], loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule), data: {breadcrumb: 'Orders'}, title: 'Orders'},
   {path: 'checkout', canActivate: [authGuard], loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule), data: {breadcrumb: 'Checkout'}, title: 'Checkout'},
   {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule), data: {breadcrumb: 'Account'}, title: 'Account'},
   {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
